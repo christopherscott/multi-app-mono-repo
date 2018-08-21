@@ -1,6 +1,10 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "bootstrap": "lerna boostrap",
+    "start": "lerna run start:portal --parallel"
+  },
   "devDependencies": {
     "lerna": "^3.1.2"
   }

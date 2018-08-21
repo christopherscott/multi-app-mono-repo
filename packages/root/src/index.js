@@ -3,7 +3,7 @@ import * as singleSpa from 'single-spa';
 
 console.log('typeof SystemJS', typeof SystemJS);
 
-let alphaPromise;
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 singleSpa.registerApplication(
     'test',
@@ -11,20 +11,18 @@ singleSpa.registerApplication(
     location => location.pathname.startsWith('/test')
 );
 
+
+let alphaLoadingPromise;
+// create the promise first, so we have time to preload before hitting the given url
 if (process.env.NODE_ENV !== 'development') {
-    alphaPromise = import(/* webpackChunkName: "alpha", webpackPreload: true */ '@multi-app-mono-repo/alpha/build/static/js/main')
+    alphaLoadingPromise = import(/* webpackChunkName: "alpha", webpackPreload: true */ '@multi-app-mono-repo/alpha');
 }
 
 singleSpa.registerApplication(
     'alpha',
-    () => {
-        if (process.env.NODE_ENV === 'development') {
-            return SystemJS.import('/local/apps/alpha'); // locally fetched via url
-        } else {
-            return alphaPromise;
-        }
-    },
+    () => isDevelopment ? SystemJS.import('/local/apps/alpha') : alphaLoadingPromise,
     location => location.pathname.startsWith('/alpha')
 );
+
 
 singleSpa.start();

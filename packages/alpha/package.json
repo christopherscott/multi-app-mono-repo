@@ -2,6 +2,7 @@
   "name": "@multi-app-mono-repo/alpha",
   "version": "1.0.0",
   "private": true,
+  "main": "build/static/js/main.js",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
