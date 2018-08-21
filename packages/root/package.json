@@ -1,7 +1,15 @@
 {
-  "name": "root",
-  "version": "0.1.0",
+  "name": "@multi-app-mono-repo/root",
+  "version": "1.0.0",
   "private": true,
+  "proxy": {
+    "/local/apps/alpha": {
+      "target": "http://localhost:9001",
+      "pathRewrite": {
+        "^/local/apps/alpha": "/static/js/bundle.js"
+      }
+    }
+  },
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
