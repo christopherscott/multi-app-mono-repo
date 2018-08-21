@@ -1,6 +1,6 @@
 {
-  "name": "beta",
-  "version": "0.1.0",
+  "name": "@multi-app-mono-repo/beta",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
@@ -91,5 +91,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "webpack": "^4.6.0"
   }
 }
